@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Login / Signup</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ef4f5f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      width: 90%;
+      max-width: 380px;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    h2 {
+      color: #ef4f5f;
+      margin-bottom: 15px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #ef4f5f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #d63c4b;
+    }
+
+    .toggle-btn {
+      color: #ef4f5f;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    
+    <div id="loginBox">
+      <h2>Login</h2>
+      <input id="loginEmail" type="email" placeholder="Enter Email" />
+      <input id="loginPass" type="password" placeholder="Enter Password" />
+      <button onclick="loginUser()">Login</button>
+      <p>Don't have an account? <span class="toggle-btn" onclick="showSignup()">Signup</span></p>
+    </div>
+
+    
+    <div id="signupBox" style="display:none;">
+      <h2>Signup</h2>
+      <input id="name" type="text" placeholder="Full Name" />
+      <input id="email" type="email" placeholder="Email" />
+      <input id="password" type="password" placeholder="Create Password" />
+      <button onclick="registerUser()">Create Account</button>
+      <p>Already have an account? <span class="toggle-btn" onclick="showLogin()">Login</span></p>
+    </div>
+
+  </div>
+
+  <script>
+    function showSignup() {
+      document.getElementById("loginBox").style.display = "none";
+      document.getElementById("signupBox").style.display = "block";
+    }
+
+    function showLogin() {
+      document.getElementById("signupBox").style.display = "none";
+      document.getElementById("loginBox").style.display = "block";
+    }
+
+    function signupUser() {
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let pass = document.getElementById("password").value;
+
+      if (name === "" || email === "" || pass === "") {
+        alert("Please fill all fields!");
+      } else {
+        alert("Account created successfully ");
+      }
+    }
+
+    function loginUser() {
+      let email = document.getElementById("loginEmail").value;
+      let pass = document.getElementById("loginPass").value;
+
+      if (email === "" || pass === "") {
+        alert("Please enter email and password!");
+      } else {
+        alert("Login Successful ");
+      }
+    }
+  </script>
+
+</body>
+</html>

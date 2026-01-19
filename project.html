@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zomato</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f5f5;
+    }
+
+    .navbar {
+      background:#e23744;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .navbar h1 {
+      font-size: 24px;
+    }
+    
+  .navbar-middle {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+
+    .search-box {
+      width: 300px;
+      padding: 8px 12px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar li {
+      cursor: pointer;
+    }
+
+  
+    .hero {
+      background: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836") center/cover;
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+  
+    .menu {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .menu h2 {
+      margin-bottom: 20px;
+    }
+
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      height: 150px;
+      object-fit: cover;
+    }
+    .price {
+      font-weight:bold;
+      color:#e23744;
+      margin:8px 0;
+    }
+
+    .card button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      border: none;
+      background: #e23744;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .cancel-btn {
+    margin-left: 8px;
+    padding: 8px 15px;
+    border: none;
+    background: gray;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+
+      .search-box {
+        width: 220px;
+      }
+
+      .navbar ul {
+        gap: 15px;
+      }
+
+      .hero {
+      background-image:url("https://img.freepik.com/premium-photo/food-background-with-organic-vegetables-healthy-food-diet-concept-website-background_94255-3782.jpg?w=2000");
+      background-size: cover;
+      background-position: center;
+      height: 450px;
+      }
+
+      .hero h2 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <h1>Zomato</h1>
+   
+    <div class="navbar-middle">
+      <input type="text" id="searchBar" class="search-box" placeholder="Search food..." onkeyup="searchFood()">
+    </div>
+
+    <ul>
+      <li onclick="showHome()">Home</li>
+      <li onclick="showMenu()">Menu</li>
+      <li onclick="goToCart()">Cart(<span id="cartCount">0</span>)</li>
+      <li onclick="login()">Login</li>
+      <li onclick="goToPayment()">Pay</li>
+    </ul>
+  </div>
+
+
+  <div class="hero" id="home">
+    <h2>Discover the best food & drinks</h2>
+    <p>Order the Delicious Items</p>
+  </div>
+
+  <div class="menu" id="menuSection">
+    <h2>Popular Items</h2>
+    <div class="menu-items">
+      <div class="card">
+        <img src="https://www.bing.com/th/id/OIP.RshZ9O7tlxkAWPuF7jKJxwHaE9?w=240&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2">
+        <h3>Pizza</h3>
+        <p class="price">₹249</p></p>
+        <button onclick="orderFood('Pizza')">Order</button>
+        <button class="cancel-btn" onclick="cancelItem('Pizza')">Cancel</button>
+      </div>
+
+      <div class="card">
+        <img src="https://www.bing.com/th/id/OIP.VaylBh1Ji1cu7f0DirnMpgHaE7?w=253&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2">
+        <h3>Burger</h3>
+        <p class="price">₹149</p>
+        <button onclick="orderFood('Burger')">Order</button>
+        <button class="cancel-btn" onclick="cancelItem('Burger')">Cancel</button>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe">
+        <h3>Biryani</h3>
+        <p class="price">₹199</p>
+        <button onclick="orderFood('Biryani')">Order</button>
+        <button class="cancel-btn" onclick="cancelItem('Biryani')">Cancel</button>
+      </div>
+      <div class="card">
+        <img src="https://th.bing.com/th/id/OSK.a3342639df5b7f2823d9488654fd47d1?w=200&h=126&c=7&rs=1&qlt=80&o=6&cdv=1&pid=16.1">
+        <h3>Pancakes</h3>
+        <p class="price">₹129</p>
+        <button onclick="orderFood('Pancakes')">Order</button>
+        <button class="cancel-btn" onclick="cancelItem('Pancakes')">Cancel</button>
+      </div>
+      <div class="card">
+        <img src="https://www.thespruceeats.com/thmb/DXZoAJoKTPS7BKEyk4H-Gw3puhc=/6016x4016/filters:fill(auto,1)/steamed-momos-wontons-1957616-hero-01-1c59e22bad0347daa8f0dfe12894bc3c.jpg">
+        <h3>Momos</h3>
+        <p class="price">₹99</p>
+        <button onclick="orderFood('Momos')">Order</button>
+        <button class="cancel-btn" onclick="cancelItem('Momos')">Cancel</button>
+      </div>
+      <div class="card">
+        <img src="https://www.licious.in/blog/wp-content/uploads/2020/12/Turkish-Kebabs-min.jpg">
+        <h3>Kebabs</h3>
+        <p class="price">₹249</p>
+        <button onclick="orderFood('Kebabs')">Order</button>
+        <button class="cancel-btn" onclick="cancelItem('Kebabs')">Cancel</button>
+      </div>
+      <div class="card">
+        <img src="https://bing.com/th?id=OSK.85044442e9423cc5bde9cfc57d98f0dd">
+        <h3>French Fries</h3>
+        <p class="price">₹99</p>
+        <button onclick="orderFood('French Fries')">Order</button>
+        <button class="cancel-btn" onclick="cancelItem('French Fries')">Cancel</button>
+      </div>
+      <div class="card">
+        <img src="https://www.catering-verhuur-hetgooi.nl/wp-content/uploads/2017/03/dessert.jpg">
+        <h3>Desserts</h3>
+        <p class="price">₹179</p>
+        <button onclick="orderFood('Desserts')">Order</button>
+        <button class="cancel-btn" onclick="cancelItem('Desserts')">Cancel</button>
+      </div>
+      <div class="card">
+        <img src="https://static.vecteezy.com/system/resources/previews/026/500/574/non_2x/summer-refreshing-beverages-photo.jpg">
+        <h3>Beverages</h3>
+        <p class="price">₹79</p>
+        <button onclick="orderFood('Beverages')">Order</button>
+        <button class="cancel-btn" onclick="cancelItem('Beverages')">Cancel</button>
+      </div>
+      <div class="card">
+        <img src="https://bing.com/th?id=OSK.20789e6dea8b4cd3fc6e8621104fd813">
+        <h3>Bread Rolls</h3>
+        <p class="price">₹89</p>
+        <button onclick="orderFood('Bread Rolls')">Order</button>
+        <button class="cancel-btn" onclick="cancelItem('Bread Rolls')">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    &copy 2026 Zomato, All Rights reserved
+  </footer>
+  <div id="popup" 
+     style="position: fixed; bottom: 20px; right: 20px;
+     background: #e23744; color: white; padding: 12px 18px;
+     border-radius: 8px; display: none;">
+  </div>
+  
+
+<div id="paymentPopup" 
+     style="display:none; position: fixed; top: 50%; left: 50%;
+     transform: translate(-50%, -50%); background: white; padding: 25px;
+     border-radius: 10px; width: 300px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+
+  <h3 style="margin-bottom: 10px;">Make Payment</h3>
+  
+  <p id="paymentItems"></p>
+  <p id="paymentTotal" style="font-weight: bold; margin-bottom: 15px;"></p>
+
+  <button onclick="confirmPayment()" 
+          style="padding: 8px 12px; background: green; color:white; border:none; border-radius:5px;">
+          Pay Now
+  </button>
+
+  <button onclick="closePayment()" 
+          style="padding: 8px 12px; background: gray; color:white; border:none; border-radius:5px; margin-left:10px;">
+          Cancel
+  </button>
+</div>
+
+  
+
+
+  <script>
+    function showHome() {
+      window.scrollTo({  top:0,behavior: "smooth" });
+    }
+
+    function showMenu() {
+      document.getElementById("menuSection")
+        .scrollIntoView({ behavior: "smooth" });
+    }
+
+    function login() {
+      window.location.href="login.html";
+    }
+
+    let cart=[];
+    function orderFood(item) {
+      cart.push(item);
+      alert(item + "added to cart! Total items:"+cart.length);
+      document.getElementById("cartCount").innerText=cart.length;
+   }
+
+    function goToCart(){
+    let items = document.querySelectorAll(".card");
+  let total = 0;
+
+  cart.forEach(c => {
+    items.forEach(i => {
+      if (i.querySelector("h3").innerText === c) {
+        let price = i.querySelector(".price").innerText.replace("₹", "");
+        total += parseFloat(price);
+      }
+    });
+  });
+
+  alert("Items: " + cart.join(", ") + "\nTotal Price: ₹" + total);  
+ }
+
+    function searchFood() {
+      let value = document.getElementById("searchBar").value.toLowerCase();
+      let cards = document.querySelectorAll(".menu-items .card");
+
+      cards.forEach(card => {
+        let name = card.querySelector("h3").innerText.toLowerCase();
+
+        if (name.includes(value)) {
+          card.style.visibility="visible"  
+        } else {
+          card.style.visibility="hidden";    
+        }
+      });
+    }
+
+   function showPopup(msg) {
+  let popup = document.getElementById("popup");
+  popup.innerText = msg;
+  popup.style.display = "block";
+
+  setTimeout(() => {
+    popup.style.display = "none";
+  }, 2000);
+}
+
+function orderFood(item) {
+  cart.push(item);
+  document.getElementById("cartCount").innerText = cart.length;
+  showPopup(item + " added to cart!");
+}
+    function cancelItem(item) {
+  let index = cart.indexOf(item);
+
+  if (index !== -1) {
+    cart.splice(index, 1);
+    document.getElementById("cartCount").innerText = cart.length;
+    showPopup(item + " removed from cart!");
+  } else {
+    showPopup(item + " not in cart.");
+  }
+}
+function goToPayment() {
+  if (cart.length === 0) {
+    showPopup("Your cart is empty!");
+    return;
+  }
+
+  let items = document.querySelectorAll(".card");
+  let total = 0;
+
+  cart.forEach(c => {
+    items.forEach(i => {
+      if (i.querySelector("h3").innerText === c) {
+        let price = i.querySelector(".price").innerText.replace("₹", "");
+        total += parseFloat(price);
+      }
+    });
+  });
+
+  document.getElementById("paymentItems").innerHTML =
+    "Items: <b>" + cart.join(", ") + "</b>";
+
+  document.getElementById("paymentTotal").innerHTML =
+    "Total Amount: <span style='color:red;'>₹" + total + "</span>";
+
+  document.getElementById("paymentPopup").style.display = "block";
+}
+
+function closePayment() {
+  document.getElementById("paymentPopup").style.display = "none";
+}
+
+function confirmPayment() {
+  alert("Payment Successful!");
+  
+  cart = [];
+  document.getElementById("cartCount").innerText = 0;
+
+  closePayment();
+}
+
+  </script>
+
+</body>
+</html>
